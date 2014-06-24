@@ -1,0 +1,35 @@
+
+<div class="ng-cloak" ng-init="init()">
+
+	<ul class="list-group" ng-show="lists == 0">
+      <li class="list-group-item">
+		 You have not created any list now
+	  </li>
+	</ul>
+
+	<div class="col-md-8" ng-hide="lists == 0" >
+		<table class="table table-striped">
+			<thead>
+				<th> List Title </th>
+			</thead>
+			<tbody>
+				<tr ng-repeat="list in lists" class="list-group" ng-model="lists">
+					<td> {{list.title}} </td>
+					<td ng-click = "deleteList(list,$index)"><button class="btn btn-danger btn-sm pull-right">Delete</button> </td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+
+	<div class="row col-md-8">
+
+		<form id="new_list" ng-submit="createList(listTitle)" class="ng-pristine">
+			<div class="input-group">
+				<input autofocus="autofocus" class="form-control input-lg ng-pristine ng-valid" data-non-blank="" id="listTitle" maxlength="255" ng-model="listTitle" placeholder="List name" type="text" required="">
+					<span class="input-group-btn"><button class="btn btn-primary btn-lg" type="submit">create list</button></span>
+			</div>
+		</form>
+	</div>
+
+</div>
