@@ -18,7 +18,15 @@ angular.module('sportsStore').factory 'TaskList', ($resource,$http) ->
    	delete: (list) ->
    	  new @service().$delete {id: list.id} , (-> null) , @errorHandler
 
-   	
+   	find: (id) ->
+      @service.get(id: id, ((list)-> 
+        list), 
+       @errorHandler)
+
+
+    update: (list,attrs) ->
+      new @service(list: attrs).$update { id: list.id}, (-> null), @errorHandler
+
 
    	all: () ->
    	  @service.query((-> null), @errorHandler)

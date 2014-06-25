@@ -1,4 +1,4 @@
-sportsStore = angular.module('sportsStore',['ngResource', 'ngRoute'])
+sportsStore = angular.module('sportsStore',['ngResource', 'ngRoute','mk.editablespan'])
 
 
 sportsStore.config ($httpProvider) ->

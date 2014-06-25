@@ -1,26 +1,6 @@
 
 <div class="ng-cloak" ng-init="init()">
 
-	<ul class="list-group" ng-show="lists == 0">
-      <li class="list-group-item">
-		 You have not created any list now
-	  </li>
-	</ul>
-
-	<div class="col-md-8" ng-hide="lists == 0" >
-		<table class="table table-striped">
-			<thead>
-				<th> List Title </th>
-			</thead>
-			<tbody>
-				<tr ng-repeat="list in lists" class="list-group" ng-model="lists">
-					<td> {{list.title}} </td>
-					<td ng-click = "deleteList(list,$index)"><button class="btn btn-danger btn-sm pull-right">Delete</button> </td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
-
 
 	<div class="row col-md-8">
 
@@ -32,4 +12,48 @@
 		</form>
 	</div>
 
+	<br/><br/><br/><br/>
+	<ul class="list-group" ng-show="lists == 0">
+      <li class="list-group-item">
+		 You have not created any list now
+	  </li>
+	</ul>
+
+
+
+	<div class="panel panel-warning">
+	  <div class="panel-heading">
+	   	<h3 class="ib">Lists</h3>
+	   	<h4 class="pull-right ib"><input ng-model="searchText" class="form-control" placeholder="Search Lists"> </h4>
+	  </div>
+	  <div class="panel-body">
+	    <ul class="list-group">
+	    	<li ng-repeat="list in lists | filter:searchText" class="list-group-item list"> 
+	    		<div class="listtitle" data-toggle="tooltip" data-placement="left" title="click to update">
+			    	<editablespan
+								  model="list.title"
+								  on-ready="listEdited(list)"
+								  span-class="info"
+								  input-class="form-control input-lg"
+								  >
+					</editablespan>
+				</div>
+				<div class="listbutton pull-right">
+					<button class="btn btn-danger btn-sm" ng-click = "deleteList(list,$index)">Delete</button>
+				</div>
+			</li>
+
+	
+	    </ul>
+	  </div>
+	</div>
+
+
+
+
+
 </div>
+
+
+
+

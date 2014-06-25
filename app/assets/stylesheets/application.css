@@ -11,3 +11,11 @@
  *= require_self
  *= require_tree .
  */
+
+
+.list {
+	padding-bottom: 20px !important; 
+}
+.listtitle , .listbutton ,.ib{
+ 	display: inline-block;
+}

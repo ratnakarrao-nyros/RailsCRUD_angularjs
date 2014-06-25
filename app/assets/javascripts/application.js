@@ -17,5 +17,7 @@
 //= require lib/angular.min
 //= require lib/angular-resource.min
 //= require lib/angular-route.min
+//= require lib/mk-editable-span.min
 //= require sportsstore
+//= require pnotify.custom.min
 //= require_tree .
