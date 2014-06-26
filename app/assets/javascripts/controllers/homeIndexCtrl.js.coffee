@@ -1,4 +1,4 @@
-angular.module('sportsStore').controller "HomeIndexCtrl" , ($scope, $routeParams, $location,TaskList) ->
+angular.module('sportsStore').controller "HomeIndexCtrl" , ($scope, $routeParams, $location,TaskList,Task) ->
   #$scope.lists = [{title: "first "}, {title: "second"}]
   $scope.init = ->
     @listService = new TaskList(serverErrorHandler)
@@ -24,6 +24,14 @@ angular.module('sportsStore').controller "HomeIndexCtrl" , ($scope, $routeParams
     notifyCall(list.title, "List is updated as "+ list.title, "success")
 
 
+
+  $scope.createTask = (name,list) -> 
+    console.log(list.id)
+    @taskService = new Task(list.id,serverErrorHandler)  
+    @taskService.create(title: name, (task) ->
+    	console.log("task created successfully")
+    )
+
   serverErrorHandler = ->
     "There was a server error, please reload the page and try again." 
 
@@ -35,5 +43,4 @@ angular.module('sportsStore').controller "HomeIndexCtrl" , ($scope, $routeParams
       text: text
       type: type
       styling: 'bootstrap3'
-
 

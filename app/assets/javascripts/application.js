@@ -20,4 +20,9 @@
 //= require lib/mk-editable-span.min
 //= require sportsstore
 //= require pnotify.custom.min
+//= require popover
 //= require_tree .
+//= require_self
+
+
+

@@ -12,6 +12,7 @@
 		</form>
 	</div>
 
+
 	<br/><br/><br/><br/>
 	<ul class="list-group" ng-show="lists == 0">
       <li class="list-group-item">
@@ -24,20 +25,30 @@
 	<div class="panel panel-warning">
 	  <div class="panel-heading">
 	   	<h3 class="ib">Lists</h3>
-	   	<h4 class="pull-right ib"><input ng-model="searchText" class="form-control" placeholder="Search Lists"> </h4>
+	   	<h4 class="pull-right ib">
+	   		<!-- <i class="glyphicon glyphicon-search"></i> -->
+	   		<input ng-model="searchText" class="form-control" placeholder="Search Lists"> 
+	   	</h4>
 	  </div>
 	  <div class="panel-body">
 	    <ul class="list-group">
 	    	<li ng-repeat="list in lists | filter:searchText" class="list-group-item list"> 
-	    		<div class="listtitle" data-toggle="tooltip" data-placement="left" title="click to update">
-			    	<editablespan
-								  model="list.title"
-								  on-ready="listEdited(list)"
-								  span-class="info"
-								  input-class="form-control input-lg"
-								  >
-					</editablespan>
-				</div>
+	    		<ul class="listtitle nav" data-toggle="tooltip" data-placement="left" title="click to update">
+			    	<li>
+				    	<editablespan
+									  model="list.title"
+									  on-ready="listEdited(list)"
+									  span-class="info"
+									  input-class="form-control input-lg"
+									  >
+						</editablespan>
+					</li>
+
+					<li style="display:none" class="taskpop"  rel="popover" showonhoverparent>
+						 <a href="#" popover> <i class="glyphicon glyphicon-plus"> </i> Add Task </a>
+					</li>
+				</ul>
+
 				<div class="listbutton pull-right">
 					<button class="btn btn-danger btn-sm" ng-click = "deleteList(list,$index)">Delete</button>
 				</div>
@@ -47,13 +58,7 @@
 	    </ul>
 	  </div>
 	</div>
-
-
-
-
-
 </div>
-
 
 
 
