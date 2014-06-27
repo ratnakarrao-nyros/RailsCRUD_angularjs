@@ -11,15 +11,15 @@ angular.module('sportsStore').factory 'Task', ($resource, $http) ->
       defaults.patch = defaults.patch || {}
       defaults.patch['Content-Type'] = 'application/json'
 
-    create: (attrs) ->
-      new @service(task: attrs).$save ((task) -> attrs.id = task.id), @errorHandler
-      attrs
+    create: (attrs,successHandler) ->
+      new @service(task: attrs).$save ((task) -> successHandler(task) ), @errorHandler
+      #attrs  
 
-    delete: (task) ->
-      new @service().$delete {id: task.id}, (-> null), @errorHandler
+    delete: (list,task) ->
+      new @service().$delete {task_list_id: list.id , id: task.id}, (-> null), @errorHandler
 
-    update: (task, attrs) ->
-      new @service(task: attrs).$update {id: task.id}, (-> null), @errorHandler
+    update: (list ,task, attrs) ->
+      new @service(task: attrs).$update {id: task.id , task_list_id: list.id}, (-> null), @errorHandler
 
     all: ->
       @service.query((-> null), @errorHandler)

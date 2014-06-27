@@ -1,4 +1,6 @@
 SprotsStore::Application.routes.draw do
+  #resources :tasks
+
   resources :task_lists
 
   get "home/index"

@@ -24,13 +24,34 @@ angular.module('sportsStore').controller "HomeIndexCtrl" , ($scope, $routeParams
     notifyCall(list.title, "List is updated as "+ list.title, "success")
 
 
+  $scope.deleteTask = (list,task,index) ->
+    @taskService = new Task(list.id,serverErrorHandler) 
+    @taskService.delete list,task, (return_val) ->
+      console.log("deleted")
+    $scope.tasks.splice(index,1)
+
+  $scope.taskEdited = (list,task) ->
+    @taskService = new Task(list.id,serverErrorHandler)
+    @taskService.update(list,task, title: task.title)
+    notifyCall(task.title, "Task is updated as "+ task.title, "success")
+
+  $scope.showlisttasks = (list,index) ->
+    @taskService = new Task(list.id,serverErrorHandler)
+    $scope.tasks = @taskService.all()
+    $scope.list = list
+    $("#task-list-view").removeClass("col-lg-10").addClass("col-lg-5")
+    $("#tasks-view").removeClass("hide")
 
   $scope.createTask = (name,list) -> 
-    console.log(list.id)
-    @taskService = new Task(list.id,serverErrorHandler)  
-    @taskService.create(title: name, (task) ->
-    	console.log("task created successfully")
-    )
+    @taskService = new Task(list.id,serverErrorHandler) 
+    $scope.list = list
+    $scope.tasks = @taskService.all() 
+    @taskService.create title: name, (task) ->
+      #$scope.tasks = task
+      $scope.tasks.unshift(task) 
+      $("#task-list-view").removeClass("col-lg-10").addClass("col-lg-5")
+      $("#tasks-view").removeClass("hide")
+      $('.taskpopover').popover('hide')
 
   serverErrorHandler = ->
     "There was a server error, please reload the page and try again." 

@@ -16,6 +16,9 @@
 .list {
 	padding-bottom: 20px !important; 
 }
-.listtitle , .listbutton ,.ib{
+.listtitle , .listbutton ,.ib, .tasktitle ,.taskbutton{
  	display: inline-block;
+}
+.taskbutton {
+	margin-top: -20px;
 }

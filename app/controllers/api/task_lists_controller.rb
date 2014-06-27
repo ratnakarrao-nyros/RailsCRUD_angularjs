@@ -2,9 +2,9 @@ class Api::TaskListsController < Api::BaseController
   #before_action :check_owner, only: [:show, :update, :destroy]
 
   def index
-    tasks = TaskList.all
+    task_lists = TaskList.all
     #render json: current_user.task_lists
-    render json: tasks
+    render json: task_lists
   end
 
   def show
