@@ -1,4 +1,4 @@
-sportsStore = angular.module('sportsStore',['ngResource', 'ngRoute','mk.editablespan'])
+sportsStore = angular.module('sportsStore',['ngResource', 'ngRoute','mk.editablespan','ngTable'])
 
 
 sportsStore.config ($httpProvider) ->
@@ -9,6 +9,7 @@ sportsStore.config ($httpProvider) ->
 sportsStore.config ($routeProvider,$locationProvider) ->
   $locationProvider.html5Mode true
   $routeProvider.when '/', templateUrl: '/templates/homeIndex.html' , controller: 'HomeIndexCtrl'
+  $routeProvider.when '/sample', templateUrl: '/templates/sample.html' , controller: 'SampleCtrl'
 
 
 

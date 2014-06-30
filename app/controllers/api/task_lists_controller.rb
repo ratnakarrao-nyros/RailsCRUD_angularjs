@@ -2,9 +2,20 @@ class Api::TaskListsController < Api::BaseController
   #before_action :check_owner, only: [:show, :update, :destroy]
 
   def index
+    
+
+    # page = params[:page].to_i
+    # page_size = params[:page_size].to_i
+
     task_lists = TaskList.all
+    # binding.pry
+
+
+    #task_lists = TaskList.paginate(:page => params[:page], :per_page => 3)
+    #task_lists_count = task_lists.count
+    # render json: @users, root: :users, each_serializer: UserSerializer, meta: { total: @users_count }
     #render json: current_user.task_lists
-    render json: task_lists
+    render json: task_lists #, meta: { total: task_lists_count }
   end
 
   def show
@@ -37,6 +48,7 @@ class Api::TaskListsController < Api::BaseController
   end
 
   def safe_params
-    params.require(:list).permit(:title)
+    params.require(:list).permit(:title,:page,:page_size)
   end
 end
+

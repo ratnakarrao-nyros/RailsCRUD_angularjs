@@ -13,5 +13,7 @@ SprotsStore::Application.routes.draw do
       resources :tasks, only: [:index, :create, :update, :destroy]
     end
   end
+
+  get "/sample" => "home#sample"
  
 end

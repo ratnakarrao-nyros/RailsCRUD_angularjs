@@ -1,9 +1,23 @@
-angular.module('sportsStore').controller "HomeIndexCtrl" , ($scope, $routeParams, $location,TaskList,Task) ->
+angular.module('sportsStore').controller "HomeIndexCtrl" , ($scope, $routeParams, $location,TaskList,Task,paginationService,$log) ->
   #$scope.lists = [{title: "first "}, {title: "second"}]
   $scope.init = ->
     @listService = new TaskList(serverErrorHandler)
     $scope.lists = @listService.all()
+    #$scope.items = @listService.all()
+    $scope.currentPage = 1
+    $scope.pageSize = 3
     notifyCall("Welcome to Angular Rails Sample application","you are on the listings page now","info")
+  
+  
+  $scope.$watch "currentPage", (page) ->
+    paginationService.setCurrentPage page
+    return
+
+  $scope.setCurrentPage = (val) ->  
+    #paginationService.setCurrentPage(val);
+    $scope.currentPage = val
+    return
+
 
 
   $scope.createList = (name) ->
@@ -65,3 +79,4 @@ angular.module('sportsStore').controller "HomeIndexCtrl" , ($scope, $routeParams
       type: type
       styling: 'bootstrap3'
 
+  

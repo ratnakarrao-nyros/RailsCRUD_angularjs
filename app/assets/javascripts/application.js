@@ -19,6 +19,7 @@
 //= require lib/angular-route.min
 //= require lib/mk-editable-span.min
 //= require sportsstore
+//= require dirPagination
 //= require pnotify.custom.min
 //= require popover
 //= require_tree .
